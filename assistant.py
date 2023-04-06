@@ -6,6 +6,7 @@ import os
 from text_to_speech import save
 from pydub import AudioSegment
 from pydub.playback import play
+import shutil
 
 LANGUAGE_CORPUS = "portuguese"
 SPEAKING_LANGUAGE = "pt-BR"
@@ -87,13 +88,16 @@ def tokenize_command(command):
     if tokens:
         tokens = remove_stop_words(tokens)
 
+        print("Tokens", tokens)
+
         if len(tokens) >= 3:
             if assistant_name == tokens[0].lower():
                 if(len(tokens) > 3):
-                    actions = []
+                    object_strings = []
                     for token in tokens:
-                        actions.append(token.lower())
-                    object = tokens[-1].lower()
+                        object_strings.append(token.lower())
+                    action = object_strings[1]
+                    object = ' '.join(object_strings[2::])
                 else:
                     action = tokens[1].lower()
                     object = tokens[2].lower()
@@ -108,9 +112,6 @@ def validate_command(action, object):
 
     if action and object:
         for registeredAction in actions:
-            if type(action) == list:
-                action = ' '.join(str(x) for x in action)
-            
             if action == registeredAction["name"].lower():
                 if object in registeredAction["objects"]:
                     valid = True
@@ -120,7 +121,16 @@ def validate_command(action, object):
 
 
 def execute_command(action, object, exec_audio):
-    title, result = searchOnWiki(object)
+    searchType = 'page'
+    section = None
+    
+    if 'autores' in object:
+        object = 'literatura grega'
+        searchType = 'section'
+        section = 'Principais Autores'
+
+    title, result = searchOnWiki(object,section,searchType)
+
     if title and result:
         print('*' * len(title) * 3)
         print(' ' * len(title) + '\033[;1m' + title + '\033[0;0m')
@@ -131,10 +141,11 @@ def execute_command(action, object, exec_audio):
             print(result)
             if exec_audio:
                 print('\033[1;36mcarregando áudio\033[0;0m')
-                save(str(result), 'pt', file='{}.mp3'.format(title.lower()))
-                audio = AudioSegment.from_mp3('{}.mp3'.format(title.lower()))
+                save(str(result), 'pt', file='./__temp/{}.mp3'.format(title.lower()))
+                audio = AudioSegment.from_mp3('./__temp/{}.mp3'.format(title.lower()))
                 play(audio)
-                os.remove('{}.mp3'.format(title.lower()))
+                shutil.rmtree('./__temp')
+                os.mkdir('./__temp')
         except:
             print('\033[1;31mNão foi possível gerar o áudio!\033[0;0m')
             print(result)
