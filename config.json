@@ -4,10 +4,32 @@
       {
           "name": "quem",
           "objects": [
+              "afrodite",
+              "apolo",
+              "ares",
+              "ártemis",
+              "atena",
+              "dionísio",
+              "eros",
+              "hades",
+              "hélios",
+              "hefesto",
+              "hermes",
+              "hera",
+              "héstia",
+              "perséfone",
+              "poseidon",
+              "têmis",
               "zeus",
-              "atenas",
-              "cronos",
-              "hércules"
+              "aquiles",
+              "belerofonte",
+              "édipo",
+              "perseu",
+              "teseu",
+              "héracles",
+              "hércules",
+              "sísifo",
+              "pandora"
           ]
       },
       {

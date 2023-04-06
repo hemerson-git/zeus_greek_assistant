@@ -2,11 +2,15 @@ import speech_recognition as sr
 from nltk import word_tokenize, corpus
 import json
 from scrapper import searchOnWiki
+import os
 
 LANGUAGE_CORPUS = "portuguese"
 SPEAKING_LANGUAGE = "pt-BR"
 CONFIG_PATH = "config.json"
 
+
+def clear():
+    print("\n" * os.get_terminal_size().lines)
 
 def start():
     global recognizer
@@ -101,29 +105,40 @@ def validate_command(action, object):
 
     if action and object:
         for registeredAction in actions:
+            if type(action) == list:
+                action = ' '.join(str(x) for x in action)
+            
             if action == registeredAction["name"].lower():
                 if object in registeredAction["objects"]:
                     valid = True
-
                 break
 
     return valid
 
 
 def execute_command(action, object):
-    if(len(action) > 2):
-        searchOnWiki(object)
-    print("vou executar o comando:", action, object)
+    title, result = searchOnWiki(object)
+    if title and result:
+        print('*' * len(title) * 3)
+        print(' ' * len(title) + '\033[;1m' + title + '\033[0;0m')
+        print('*' * len(title) * 3)
+        print('\n')
+
+        print(result)
+        exit()
+    
+    print('\033[1;31mNão conseguimos completar a sua pesquisa, por favor tente novamente!\033[0;0m')
 
 
 if __name__ == '__main__':
     start()
 
-    continuar = True
-    while continuar:
+    repeat = True
+    while repeat:
         try:
             command = listen_command()
-            print(f"processando o comando: {command}")
+            clear()
+            print(f"\033[1;36mprocessando o comando:\033[0;0m {command}\n")
 
             if command:
                 action, object = tokenize_command(command)
@@ -131,8 +146,8 @@ if __name__ == '__main__':
                 if valid:
                     execute_command(action, object)
                 else:
-                    print("Não entendi o comando. Repita, por favor!")
+                    print("\033[1;31mNão entendi o comando. Repita, por favor!\033[0;0m")
         except KeyboardInterrupt:
             print("Tchau!")
 
-            continuar = False
+            repeat = False
