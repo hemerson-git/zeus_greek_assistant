@@ -1,0 +1,38 @@
+{
+  "name": "zeus",
+  "actions": [
+      {
+          "name": "quem",
+          "objects": [
+              "zeus",
+              "atenas",
+              "cronos",
+              "hércules"
+          ]
+      },
+      {
+          "name": "desligar",
+          "objects": [
+              "lâmpada",
+              "televisão",
+              "ar condicionado"
+          ]
+      },
+      {
+          "name": "aumentar",
+          "objects": [
+              "luminosidade",
+              "volume",
+              "temperatura"
+          ]
+      },
+      {
+          "name": "diminuir",
+          "objects": [
+              "luminosidade",
+              "volume",
+              "temperatura"
+          ]
+      }
+  ]
+}
