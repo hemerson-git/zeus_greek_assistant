@@ -3,6 +3,9 @@ from nltk import word_tokenize, corpus
 import json
 from scrapper import searchOnWiki
 import os
+from text_to_speech import save
+from pydub import AudioSegment
+from pydub.playback import play
 
 LANGUAGE_CORPUS = "portuguese"
 SPEAKING_LANGUAGE = "pt-BR"
@@ -116,7 +119,7 @@ def validate_command(action, object):
     return valid
 
 
-def execute_command(action, object):
+def execute_command(action, object, exec_audio):
     title, result = searchOnWiki(object)
     if title and result:
         print('*' * len(title) * 3)
@@ -124,7 +127,18 @@ def execute_command(action, object):
         print('*' * len(title) * 3)
         print('\n')
 
-        print(result)
+        try:
+            print(result)
+            if exec_audio:
+                print('\033[1;36mcarregando áudio\033[0;0m')
+                save(str(result), 'pt', file='{}.mp3'.format(title.lower()))
+                audio = AudioSegment.from_mp3('{}.mp3'.format(title.lower()))
+                play(audio)
+                os.remove('{}.mp3'.format(title.lower()))
+        except:
+            print('\033[1;31mNão foi possível gerar o áudio!\033[0;0m')
+            print(result)
+
         exit()
     
     print('\033[1;31mNão conseguimos completar a sua pesquisa, por favor tente novamente!\033[0;0m')
@@ -144,7 +158,7 @@ if __name__ == '__main__':
                 action, object = tokenize_command(command)
                 valid = validate_command(action, object)
                 if valid:
-                    execute_command(action, object)
+                    execute_command(action, object, True)
                 else:
                     print("\033[1;31mNão entendi o comando. Repita, por favor!\033[0;0m")
         except KeyboardInterrupt:
