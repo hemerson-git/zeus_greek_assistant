@@ -41,19 +41,28 @@
           ]
       },
       {
-          "name": "aumentar",
+          "name": "surgiu",
           "objects": [
-              "luminosidade",
-              "volume",
-              "temperatura"
+              "pandora",
+              "titãs",
+              "erinias"
           ]
       },
       {
-          "name": "diminuir",
+          "name": "surgiram",
           "objects": [
-              "luminosidade",
-              "volume",
-              "temperatura"
+              "titãs na mitologia grega",
+              "fúrias",
+              "erínias"
+          ]
+      },
+      {
+          "name": "como",
+          "objects": [
+              "surgiu pandora",
+              "surgiram titãs",
+              "surgiram furias",
+              "surgiram erínias"
           ]
       }
   ]
