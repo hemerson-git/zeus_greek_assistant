@@ -1,69 +1,57 @@
 {
   "name": "zeus",
   "actions": [
-      {
-          "name": "quem",
-          "objects": [
-              "afrodite",
-              "apolo",
-              "ares",
-              "ártemis",
-              "atena",
-              "dionísio",
-              "eros",
-              "hades",
-              "hélios",
-              "hefesto",
-              "hermes",
-              "hera",
-              "héstia",
-              "perséfone",
-              "poseidon",
-              "têmis",
-              "zeus",
-              "aquiles",
-              "belerofonte",
-              "édipo",
-              "perseu",
-              "teseu",
-              "héracles",
-              "hércules",
-              "sísifo",
-              "pandora"
-          ]
-      },
-      {
-          "name": "quais",
-          "objects": [
-              "principais autores mitologia grega",
-              "televisão",
-              "ar condicionado"
-          ]
-      },
-      {
-          "name": "surgiu",
-          "objects": [
-              "pandora",
-              "titãs",
-              "erinias"
-          ]
-      },
-      {
-          "name": "surgiram",
-          "objects": [
-              "titãs na mitologia grega",
-              "fúrias",
-              "erínias"
-          ]
-      },
-      {
-          "name": "como",
-          "objects": [
-              "surgiu pandora",
-              "surgiram titãs",
-              "surgiram furias",
-              "surgiram erínias"
-          ]
-      }
+    {
+      "name": "quem",
+      "objects": [
+        "afrodite",
+        "apolo",
+        "ares",
+        "ártemis",
+        "atena",
+        "dionísio",
+        "eros",
+        "hades",
+        "hélios",
+        "hefesto",
+        "hermes",
+        "hera",
+        "héstia",
+        "perséfone",
+        "poseidon",
+        "têmis",
+        "zeus",
+        "aquiles",
+        "belerofonte",
+        "édipo",
+        "perseu",
+        "teseu",
+        "héracles",
+        "hércules",
+        "sísifo",
+        "pandora"
+      ]
+    },
+    {
+      "name": "quais",
+      "objects": ["principais autores mitologia grega", "trabalhos héracles"]
+    },
+    {
+      "name": "surgiu",
+      "objects": ["pandora", "titãs", "erinias"]
+    },
+    {
+      "name": "surgiram",
+      "objects": ["titãs na mitologia grega", "fúrias", "erínias"]
+    },
+    {
+      "name": "como",
+      "objects": [
+        "surgiu pandora",
+        "surgiram titãs",
+        "surgiram furias",
+        "surgiram erínias"
+      ]
+    }
   ]
 }

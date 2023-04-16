@@ -88,7 +88,7 @@ def tokenize_command(command):
     if tokens:
         tokens = remove_stop_words(tokens)
 
-        print("Tokens", tokens)
+        # print("Tokens", tokens)
 
         if len(tokens) >= 3:
             if assistant_name == tokens[0].lower():
