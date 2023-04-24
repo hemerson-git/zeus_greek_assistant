@@ -71,11 +71,12 @@ def remove_stop_words(tokens):
     global stop_words
 
     filtered_tokens = []
+    is_a_what_question = (tokens[1] + ' ' + tokens[2]).lower() == 'o que'
     for token in tokens:
         if token not in stop_words:
             filtered_tokens.append(token)
 
-    return filtered_tokens
+    return [filtered_tokens[0], 'que', tokens[3], *filtered_tokens[2:]] if is_a_what_question else filtered_tokens
 
 
 def tokenize_command(command):
@@ -87,8 +88,7 @@ def tokenize_command(command):
     tokens = word_tokenize(command, LANGUAGE_CORPUS)
     if tokens:
         tokens = remove_stop_words(tokens)
-
-        # print("Tokens", tokens)
+        print("Tokens", tokens)
 
         if len(tokens) >= 3:
             if assistant_name == tokens[0].lower():
